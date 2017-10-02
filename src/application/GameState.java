@@ -1,8 +1,6 @@
 package application;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Random;
+import java.util.*;
 
 public class GameState {
     private HashMap<Integer, Point> points;
@@ -26,8 +24,9 @@ public class GameState {
         initBoard();
 
         // TODO start the game, roll for first player, ...
-        // for Testing:
+        // for Testing: BLACK starts
         currentPlayer = PlayerColor.BLACK;
+        roll();
     }
 
     // clears rolls, rolls new
@@ -64,10 +63,14 @@ public class GameState {
         points.get(24).set(PlayerColor.BLACK, 2);
     }
 
-
+    //TODO get possible Turns (Lists of 1-4 single moves) for current player and roll
     public ArrayList<Turn> getPossibleTurns(){
-        //TODO get possible Turns (Lists of 1-4 single moves)
         return null;
+    }
+
+    //TODO tests if Turn is possible
+    private boolean isValideTurn(Turn t){
+        return true;
     }
 
     // does not check if move is possible
@@ -106,8 +109,9 @@ public class GameState {
         }
     }
 
-    //TODO executed by UI; Params: List of Turns
-    // execute turn/s, roll dice, set new currentPlayer
+
+    // execute turn/s, roll dice, set new currentPlayer (can be empty, if no possible moves exist)
+    // called by GUI
     public void doTurn(Turn t){
         for(Move m :t.getMoves()){
             try {
@@ -117,18 +121,21 @@ public class GameState {
             }
         }
         // end turn, next player
-        roll();
-
         if(currentPlayer == PlayerColor.RED){
             currentPlayer = PlayerColor.BLACK;
         } else {
             currentPlayer = PlayerColor.RED;
         }
+
+        roll();
     }
 
+    // interface for GUI components
     public PlayerColor getCurrentPlayer() {
         return currentPlayer;
     }
+    public Set<Map.Entry<PlayerColor, Player>> getPlayers(){return players.entrySet(); }
+    public Set<Map.Entry<Integer, Point>> getBoard(){return points.entrySet();}
 
     public String toString() {
         String str = players.get(PlayerColor.BLACK).toString() + "\n" + players.get(PlayerColor.RED).toString() + "\n";
