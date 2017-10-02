@@ -27,12 +27,19 @@ public class Main extends Application {
 
     private static void test() throws GameState.IllegalMoveException {
         GameState game = new GameState();
+
+        //Game before Turn
         System.out.println(game);
 
-        game.move(1, 5);
-        System.out.println(game);
+        // Test turn
+        Turn t = new Turn();
+        t.addMove(1,5);
+        t.addMove(6,5);
 
-        game.move(6, 5);
+        // execute Turn
+        game.doTurn(t);
+
+        //Game after Turn
         System.out.println(game);
     }
 }

@@ -26,6 +26,8 @@ public class GameState {
         initBoard();
 
         // TODO start the game, roll for first player, ...
+        // for Testing:
+        currentPlayer = PlayerColor.BLACK;
     }
 
     // clears rolls, rolls new
@@ -62,18 +64,22 @@ public class GameState {
         points.get(24).set(PlayerColor.BLACK, 2);
     }
 
-    //TODO get possible moves (movesets, Lists of 1-4 single moves)
-    public void getPossibleMoves(){}
+
+    public ArrayList<Turn> getPossibleTurns(){
+        //TODO get possible Turns (Lists of 1-4 single moves)
+        return null;
+    }
 
     // does not check if move is possible
     // executes a single move (one dice roll)
-    public void move(Integer startPoint, Integer endPoint) throws IllegalMoveException{
+    private void move(Move m) throws IllegalMoveException{
 
         // TODO deal with hit checkers, out Checkers ( 1 > start/end > 24)
-        if(startPoint > 24 || endPoint > 24 || startPoint < 1 || endPoint < 1) throw new IllegalMoveException();
+        if(m.getStart() > 24 || m.getEnd() > 24 || m.getStart() < 1 || m.getEnd() < 1) throw new IllegalMoveException();
 
-        Point start = points.get(startPoint);
-        Point end = points.get(endPoint);
+        Point start = points.get(m.getStart());
+        Point end = points.get(m.getEnd());
+
         if(start.getOwner() == PlayerColor.BLANK){
             throw new IllegalMoveException();
         } else if(start.getOwner() == end.getOwner()){
@@ -102,7 +108,23 @@ public class GameState {
 
     //TODO executed by UI; Params: List of Turns
     // execute turn/s, roll dice, set new currentPlayer
-    public void doTurn(){}
+    public void doTurn(Turn t){
+        for(Move m :t.getMoves()){
+            try {
+                move(m);
+            } catch (IllegalMoveException e) {
+                System.out.print("Illegal Move from" + m.getStart() + " to " + m.getEnd());
+            }
+        }
+        // end turn, next player
+        roll();
+
+        if(currentPlayer == PlayerColor.RED){
+            currentPlayer = PlayerColor.BLACK;
+        } else {
+            currentPlayer = PlayerColor.RED;
+        }
+    }
 
     public PlayerColor getCurrentPlayer() {
         return currentPlayer;
