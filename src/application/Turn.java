@@ -17,7 +17,6 @@ public class Turn {
     public void addMove(Integer start, Integer end){
         moves.add(new Move(start,end));
     }
-
     public ArrayList<Move> getMoves(){
         return moves;
     }

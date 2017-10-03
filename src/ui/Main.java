@@ -48,5 +48,6 @@ public class Main extends Application {
         game.doTurn(t);
 
         System.out.println(game);
+
     }
 }

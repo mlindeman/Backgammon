@@ -1,6 +1,5 @@
 package application;
 
-
 public class Point {
     private PlayerColor owner;
     private Integer checkers;
@@ -13,7 +12,6 @@ public class Point {
     public Integer getCheckers() {
         return checkers;
     }
-
     public void setCheckers(Integer checkers) {
         this.checkers = checkers;
     }
@@ -47,5 +45,4 @@ public class Point {
             return "";
         }
     }
-
 }

@@ -20,7 +20,6 @@ public class GameState {
 
         board = new Board();
 
-
         // TODO start the game, roll for first player, ...
         // for Testing: BLACK starts
         currentPlayer = BLACK;
@@ -78,9 +77,6 @@ public class GameState {
         // TODO deal with hit checkers, out Checkers ( 1 > start/end > 24)
         // if(m.getStart() > 24 || m.getEnd() > 24 || m.getStart() < 1 || m.getEnd() < 1) throw new IllegalMoveException();
 
-
-
-
         Point start = board.getPoints().get(m.getStart());
         Point end = board.getPoints().get(m.getEnd());
 
@@ -115,7 +111,6 @@ public class GameState {
             throw new IllegalMoveException();
         }
     }
-
 
     // execute turn/s, roll dice, set new currentPlayer (can be empty, if no possible moves exist)
     // called by GUI
