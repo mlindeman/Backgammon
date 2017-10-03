@@ -31,6 +31,7 @@ public class Board {
         points.get(17).set(PlayerColor.RED, 3);
         points.get(19).set(PlayerColor.RED, 5);
         points.get(24).set(PlayerColor.BLACK, 2);
+        
     }
 
     public HashMap<Integer, Point> getPoints() {
