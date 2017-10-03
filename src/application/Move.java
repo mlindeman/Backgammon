@@ -7,6 +7,7 @@ public class Move {
     public Move(Integer start, Integer end){
         this.start = start;
         this.end = end;
+
     }
 
     public Integer getStart() {

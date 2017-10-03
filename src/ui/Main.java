@@ -41,5 +41,12 @@ public class Main extends Application {
 
         //Game after Turn
         System.out.println(game);
+
+        t = new Turn();
+        t.addMove(25, 21);
+
+        game.doTurn(t);
+
+        System.out.println(game);
     }
 }
